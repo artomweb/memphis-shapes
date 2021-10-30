@@ -8,19 +8,21 @@ const possibleFillDir = [
 ];
 let angles;
 
-const circleRad = 50;
-const squareSize = 50;
-const lineSize = 6;
-const fillOffsetCircle = 9;
-const fillOffsetSquare = 10;
-const fillOffsetLine = 8;
+let scaleFactor = 5;
+
+const circleRad = 50 * scaleFactor;
+const squareSize = 50 * scaleFactor;
+const lineSize = 6 * scaleFactor;
+const fillOffsetCircle = 9 * scaleFactor;
+const fillOffsetSquare = 10 * scaleFactor;
+const fillOffsetLine = 8 * scaleFactor;
 
 let createdShapes = [];
-const minBorder = 55;
-const border = -10;
+const minBorder = 55 * scaleFactor;
+const border = -10 * scaleFactor;
 
 function setup() {
-    createCanvas(1000, 1000);
+    createCanvas(5000, 5000);
     noLoop();
 
     angles = [0, PI / 4, PI];
@@ -58,7 +60,7 @@ function draw() {
     for (let i = 0; i < createdShapes.length; i++) {
         createdShapes[i].show();
     }
-    // save("shapes2.png");
+    // save("shapes.png");
 }
 
 function isColliding(obj1, obj2) {
@@ -66,11 +68,13 @@ function isColliding(obj1, obj2) {
 }
 
 function drawSquiggle() {
-    let lineLength = 20;
-    let capLength = 3.25;
+    let lineLength = 20 * scaleFactor;
+    let capLength = 3.25 * scaleFactor;
 
-    let beginX = -30;
-    let beginY = 30;
+    let beginX = -30 * scaleFactor;
+    let beginY = 30 * scaleFactor;
+
+    strokeWeight(6.5 * scaleFactor);
 
     for (let i = 0; i < 3; i++) {
         line(beginX, beginY, beginX + lineLength + capLength, beginY);
@@ -82,7 +86,9 @@ function drawSquiggle() {
 }
 
 function drawTriangle() {
-    let h = 30;
+    let h = 30 * scaleFactor;
+
+    strokeWeight(6.5 * scaleFactor);
 
     beginShape();
 
@@ -108,7 +114,7 @@ class generateShape {
     }
 
     show() {
-        strokeWeight(5);
+        strokeWeight(5 * scaleFactor);
         stroke("pink");
         // circle(this.pos.x, this.pos.y, minBorder * 2);
         if (this.shapeText === "square") {
@@ -134,19 +140,19 @@ class generateShape {
             push();
             translate(this.pos.x, this.pos.y);
             rotate(random(angles));
-            translate(-15, 0);
+            translate(-15 * scaleFactor, 0);
 
             noStroke();
 
             fill("#70cdc3");
             rect(fillOffsetLine * this.fillx, fillOffsetLine * this.filly, lineSize, squareSize);
-            rect(15 + fillOffsetLine * this.fillx, 10 + fillOffsetLine * this.filly, lineSize, squareSize);
-            rect(30 + fillOffsetLine * this.fillx, -5 + fillOffsetLine * this.filly, lineSize, squareSize);
+            rect(15 * scaleFactor + fillOffsetLine * this.fillx, 10 * scaleFactor + fillOffsetLine * this.filly, lineSize, squareSize);
+            rect(30 * scaleFactor + fillOffsetLine * this.fillx, -5 * scaleFactor + fillOffsetLine * this.filly, lineSize, squareSize);
 
             fill("black");
             rect(0, 0, lineSize, squareSize);
-            rect(15, 10, lineSize, squareSize);
-            rect(30, -5, lineSize, squareSize);
+            rect(15 * scaleFactor, 10 * scaleFactor, lineSize, squareSize);
+            rect(30 * scaleFactor, -5 * scaleFactor, lineSize, squareSize);
 
             pop();
         } else if (this.shapeText === "steps") {
