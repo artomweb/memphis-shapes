@@ -8,7 +8,7 @@ const possibleFillDir = [
 ];
 let angles;
 
-let scaleFactor = 2;
+let scaleFactor = 1.3;
 
 const circleRad = 50 * scaleFactor;
 const squareSize = 50 * scaleFactor;
@@ -18,11 +18,11 @@ const fillOffsetSquare = 10 * scaleFactor;
 const fillOffsetLine = 8 * scaleFactor;
 
 let createdShapes = [];
-const minBorder = 45 * scaleFactor;
+const minBorder = 55 * scaleFactor;
 const border = -10 * scaleFactor;
 
 function setup() {
-    createCanvas(800, 800);
+    createCanvas(window.innerWidth, window.innerHeight);
     noLoop();
 
     angles = [0, PI / 4, PI];
