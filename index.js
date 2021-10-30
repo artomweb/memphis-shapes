@@ -20,7 +20,7 @@ const minBorder = 55;
 const border = -10;
 
 function setup() {
-    createCanvas(800, 800);
+    createCanvas(1000, 1000);
     noLoop();
 
     angles = [0, PI / 4, PI];
@@ -58,6 +58,7 @@ function draw() {
     for (let i = 0; i < createdShapes.length; i++) {
         createdShapes[i].show();
     }
+    // save("shapes2.png");
 }
 
 function isColliding(obj1, obj2) {
